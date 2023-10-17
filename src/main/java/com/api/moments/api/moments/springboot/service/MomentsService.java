@@ -1,13 +1,22 @@
 package com.api.moments.api.moments.springboot.service;
 
 import com.api.moments.api.moments.springboot.model.Moments;
+import com.api.moments.api.moments.springboot.repository.MomentsRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
+import java.util.List;
 
-public interface MomentsService {
+@Service
+@AllArgsConstructor
+public class MomentsService {
 
-    Moments saveImage(Moments moments);
-     //void init();
+   private final MomentsRepository momentsRepository;
 
-    //MultipartFile save(MultipartFile moments);
+    public Moments saveImage(Moments moments) {
+        return momentsRepository.save(moments);
+    }
 
-    //Resource load(String filename);
+    public List<Moments> findOneImage() {
+        return momentsRepository.findAll();
+    }
 }

@@ -1,13 +1,11 @@
 package com.api.moments.api.moments.springboot.model;
 
-
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Data;
-import org.springframework.web.bind.annotation.RequestParam;
-
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,13 +19,13 @@ public class Moments {
     private String title;
     private String description;
     @JsonProperty("image")
-    private String fileImage;
+    private String filename;
     @JsonIgnore
-    private String createad_at;
+    private String createad_at = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     @JsonIgnore
-    private String updated_at;
-    @JsonIgnore
+    private String updated_at = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     @OneToMany
+    @JsonIgnore
     private List<Commenst> comments = new ArrayList<>();
 
 
